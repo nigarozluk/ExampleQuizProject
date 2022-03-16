@@ -11,6 +11,8 @@ backend:.net core,entity framework, repository design pattern,Unit OF Work,
 database;mssql
 <br/>
 <br/>
+# Admin Side
+<br/>
 <img src="ReadMeImages/1-adminlogin.PNG">
 <br/>
 <br/>
@@ -55,6 +57,8 @@ database;mssql
 <br/>
 <img src="ReadMeImages/15-listofuser.PNG">
 <br/>
+<br/>
+# User Side
 <br/>
 <img src="ReadMeImages/16-userlogin.PNG">
 <br/>
