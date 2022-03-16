@@ -2,6 +2,15 @@
 Example Basic Quiz Project. Admin Creates Quiz,asssign to user  and user can take the quiz.
 <br/>
 <br/>
+front:Bootstrap Modals and Datatables with AJAX(server-side), 
+<br/>
+<br/>
+backend:.net core,entity framework, repository design pattern,Unit OF Work,
+<br/>
+<br/>
+database;mssql
+<br/>
+<br/>
 <img src="ReadMeImages/1-adminlogin.PNG">
 <br/>
 <br/>
