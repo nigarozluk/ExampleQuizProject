@@ -1,0 +1,1705 @@
+﻿
+<link rel="stylesheet" href="~/css/Menu.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+<style>
+    .dataTableLayout {
+        table-layout: fixed;
+        width: 100%;
+    }
+    table td {
+        max-width: 12px;
+        white-space: break-spaces !important;
+        word-break: break-word !important;
+    }
+    td {
+        white-space: break-spaces !important;
+        word-break: break-word !important;
+    }
+
+</style>
+<div class="container">
+    <div class="row">
+        <div class="alert alert-danger col-md-12 text-center" role="alert">
+            <h3>OPERATIONS</h3>
+        </div>
+        <div class="col-md-3">
+            <div class="square-service-block">
+                <a href="javascript:openModelAddExam()">
+                    <div class="ssb-icon"><i class="fa fa-paint-brush" aria-hidden="true"></i></div>
+                    <h2 class="ssb-title">Add Exam</h2>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="square-service-block">
+                <a href="javascript:openModelListExam()">
+                    <div class="ssb-icon"> <i class="fa fa-globe" aria-hidden="true"></i> </div>
+                    <h2 class="ssb-title">List Exam</h2>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="square-service-block">
+                <a href="javascript:openModelAddCategoryForExam()">
+                    <div class="ssb-icon"><i class="fa fa-camera" aria-hidden="true"></i></div>
+                    <h2 class="ssb-title">Add Category(ex.)</h2>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="square-service-block">
+                <a href="javascript:openModelListCategoryForExam()">
+                    <div class="ssb-icon"><i class="fa fa-font" aria-hidden="true"></i></div>
+                    <h2 class="ssb-title">List Category(ex.)</h2>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="square-service-block">
+                <a href="javascript:openModelAddQuestion()">
+                    <div class="ssb-icon"><i class="fa fa-cubes" aria-hidden="true"></i></div>
+                    <h2 class="ssb-title">Add Question</h2>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="square-service-block">
+                <a href="javascript:openModelListQuestion()">
+                    <div class="ssb-icon"><i class="fa fa-brush" aria-hidden="true"></i></div>
+                    <h2 class="ssb-title">List Question</h2>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="square-service-block">
+                <a href="javascript:openModelAddCategoryForQue()">
+                    <div class="ssb-icon"><i class="fa fa-paint-brush" aria-hidden="true"></i> </div>
+                    <h2 class="ssb-title">Add Category(que.)</h2>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="square-service-block">
+                <a href="javascript:openModelListCategoryForQue()">
+                    <div class="ssb-icon"><i class="fa fa-volume-up" aria-hidden="true"></i> </div>
+                    <h2 class="ssb-title">List Category(que.)</h2>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="square-service-block">
+                <a href="javascript:openModelAddQustionToExam()">
+                    <div class="ssb-icon"><i class="fa fa-cubes" aria-hidden="true"></i></div>
+                    <h2 class="ssb-title">Add Que. To Exam</h2>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="square-service-block">
+                <a href="javascript:openModelListUser()">
+                    <div class="ssb-icon"><i class="fa fa-eyedropper" aria-hidden="true"></i></div>
+                    <h2 class="ssb-title">List User</h2>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="square-service-block">
+                <a href="javascript:openModelAssignUser()">
+                    <div class="ssb-icon"><i class="fa fa-brush" aria-hidden="true"></i> </div>
+                    <h2 class="ssb-title">Assign User</h2>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="square-service-block">
+                <a href="javascript:openModelListScore()">
+                    <div class="ssb-icon"><i class="fa fa-volume-up" aria-hidden="true"></i> </div>
+                    <h2 class="ssb-title">Scores</h2>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="addExam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Exam</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="AddExamForm">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Exam Name</label>
+                            <input type="text" class="form-control" name="ExamName" placeholder="Exam Name">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Duration</label>
+                            <input type="number" class="form-control" name="ExamDuration" placeholder="Duration">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress">Exam Comment</label>
+                        <input type="text" class="form-control" name="ExamText" placeholder="Exam Comment">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <label for="inputEmail4">Succes Score</label>
+                            <input type="number" class="form-control" name="SuccessScore" placeholder="Success Score">
+                        </div>
+                        <div class="form-group col-md-7">
+                            <label for="inputState">Category</label>
+                            <select name="CategoryID" class="form-control">
+                                <option selected>Choose...</option>
+                                @foreach (var list in ViewBag.ExamCatList)
+                                {
+                                    <option value="@list.ID">
+                                        @list.CategoryName
+                                    </option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="AddExam()">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="listExam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" style="width:100%; min-width:1000px;" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Exam List</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="ExamListForm">
+                    <div class="form-group">
+                        <label for="inputState">Select Exam Category</label>
+                        <select id="ExamCategoryID" class="form-control">
+                            <option selected>Choose...</option>
+                            @foreach (var list in ViewBag.ExamCatList)
+                            {
+                                <option value="@list.ID">
+                                    @list.CategoryName
+                                </option>
+                            }
+                        </select>
+                    </div>
+                    <div id="ListForExams">
+                        <table id="ExamListTable" class="table table-striped table-bordered table-hover table-checkable display responsive nowrap no-footer dtr-inline" role="grid">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Text</th>
+                                    <th>Category</th>
+                                    <th>Score</th>
+                                    <th>Duration</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addCategoryforExam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Category For Exam</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="AddCategoryForExamForm">
+                    <div class="form-group">
+                        <label for="text">Exam Category</label>
+                        <input type="text" class="form-control" aria-describedby="text" name="CategoryName" placeholder="Category">
+                        <small class="form-text text-muted">You can Edit or Delete it on Exam Category List.</small>
+                        <input type="hidden" name="CategoryType" value="0" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="AddCategoryForExam()">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="listCategoryforExam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">List Category of Exam</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div>
+                        <table id="ExamCategoryListTable" class="table table-striped table-bordered table-hover table-checkable display responsive nowrap no-footer dtr-inline w-100" role="grid">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Type</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addQuestion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Question</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="AddQuestionForm">
+                    <div class="form-group">
+                        <label for="inputState">Question Category</label>
+                        <select name="CategoryID" class="form-control">
+                            <option selected>Choose...</option>
+                            @foreach (var list in ViewBag.QuestionCatList)
+                            {
+                                <option value="@list.ID">
+                                    @list.CategoryName
+                                </option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputAddress">Question</label>
+                        <input type="text" class="form-control" name="QuestionText" placeholder="Question">
+                    </div>
+                    <div class="form-group">
+                        <label for="optionType">Question Type</label>
+                        <select name="QuestionType" id="optionType" class="form-control">
+                            <option selected>Choose...</option>
+                            <option value="1">With Option</option>
+                            <option value="2">Without Option</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="answerInput" hidden>
+                        <label for="inputAddress">Answer</label>
+                        <input type="text" class="form-control" name="Answer" placeholder="Answer">
+                    </div>
+                    <div class="form-row" id="optionInput" hidden>
+                        <div class="form-group col-md-8">
+                            <label for="inputEmail4">Option Text</label>
+                            <input type="text" class="form-control" id="optionText" placeholder="Option">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputEmail4" style="font-size:10px;">for option</label>
+                            <button type="button" class="btn btn-success form-control" id="addOptionToRadio">Add Option</button>
+                        </div>
+                    </div>
+                    <fieldset class="form-group" id="optionList" hidden>
+                        <div class="row">
+                            <legend class="col-form-label col-sm-2 pt-0">Options</legend>
+                            <div class="col-sm-10" id="radioList">
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="AddQuestion()">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="listQuestion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Question List</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="ListQue">
+                    <table id="QuestionListTable" class="table table-striped table-bordered table-hover table-checkable display responsive nowrap no-footer dtr-inline w-100" role="grid">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Text</th>
+                                <th>Category</th>
+                                <th>Type</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addCategoryforQuestion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Category For Question</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="AddCategoryForQuestionForm">
+                    <div class="form-group">
+                        <label for="text">Question Category</label>
+                        <input type="text" class="form-control" name="CategoryName" aria-describedby="emailHelp" placeholder="Category">
+                        <small class="form-text text-muted">You can Edit or Delete it on Question Category List.</small>
+                        <input type="hidden" name="CategoryType" value="1" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="AddCategoryForQuestion()">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="listCategoryforQuestion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Category List For Question</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <table id="QuestionCategoryListTable" class="table table-striped table-bordered table-hover table-checkable display responsive nowrap no-footer dtr-inline w-100" role="grid">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addQuestionToExam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Question To Exam</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="AddQuestionToExamForm">
+                    <div class="form-group">
+                        <label for="inputState">Select Exam</label>
+                        <select name="ExamID" id="selectedExam" class="form-control">
+                            <option selected>Choose...</option>
+                            @foreach (var list in ViewBag.ExamList)
+                            {
+                                <option value="@list.ID">
+                                    @list.ExamName
+                                </option>
+                            }
+                        </select>
+                    </div>
+                    <div id="QuestionListForExam">
+                        <table id="QuestionTable" class="table table-striped table-bordered table-hover table-checkable display responsive nowrap no-footer dtr-inline w-100" role="grid">
+                            <thead>
+                                <tr>
+
+                                    <th>ID</th>
+                                    <th>Category ID</th>
+                                    <th>Question Text</th>
+                                    <th>Question Type</th>
+                                    <th>Operation</th>
+
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                @*<button type="button" class="btn btn-primary" onclick="AddQuestionToExam">Save</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="listUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">List of User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="ListUser">
+                    <table id="UserListTable" class="table table-striped table-bordered table-hover table-checkable display responsive nowrap no-footer dtr-inline w-100" role="grid">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Mail</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="assingUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Assign Exam To User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="assignUserForm">
+                    <div class="form-group">
+                        <label for="inputState">Select Exam</label>
+                        <select id="selectedExamoruser" name="ExamID" class="form-control">
+                            <option selected>Choose...</option>
+                            @foreach (var list in ViewBag.ExamList)
+                            {
+                                <option value="@list.ID">
+                                    @list.ExamName
+                                </option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="birthday">Start Date:</label>
+                            <input type="date" class="form-control" id="startDate" name="StartDate">
+                        </div>
+                        <div class="col">
+                            <label for="birthday">End Date:</label>
+                            <input type="date" class="form-control" id="endDate" name="EndDate">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-8">
+                            <label for="inputEmail4">User Mail</label>
+                            <input type="text" class="form-control" id="userName" name="UserName" placeholder="Mail">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputEmail4" style="font-size:10px;">for option</label>
+                            <button type="button" class="btn btn-success form-control" onclick="AddUserToExam()">Assign User</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="listScore" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Score List Of User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="inputState">Select Exam</label>
+                    <select id="examIDForScores" class="form-control">
+                        <option selected>Choose...</option>
+                        @foreach (var list in ViewBag.ExamList)
+                        {
+                            <option value="@list.ID">
+                                @list.ExamName
+                            </option>
+                        }
+                    </select>
+                </div>
+                <div id="ListForScores">
+                    <table id="ScoresListTable" class="table table-striped table-bordered table-hover table-checkable display responsive nowrap no-footer dtr-inline" role="grid">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Exam</th>
+                                <th>Date</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="listEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content" style="background-color:mistyrose">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Selected Exam</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="EditSelectedExamForm">
+                    <input type="hidden" id="EditedExamID" name="ID" />
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Exam Name</label>
+                            <input type="text" class="form-control" name="ExamName" id="ExamNameEdit" placeholder="Exam Name">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Duration</label>
+                            <input type="number" class="form-control" name="ExamDuration" id="ExamDurationEdit" placeholder="Duration">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress">Exam Comment</label>
+                        <input type="text" class="form-control" name="ExamText" id="ExamTextEdt" placeholder="Exam Comment">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <label for="inputEmail4">Succes Score</label>
+                            <input type="number" class="form-control" name="SuccessScore" id="SuccessScoreEdit" placeholder="Success Score">
+                        </div>
+                        <div class="form-group col-md-7">
+                            <label for="inputState">Category</label>
+                            <select name="CategoryID" id="CategoryIDEdit" class="form-control">
+                                <option selected>Choose...</option>
+                                @foreach (var list in ViewBag.ExamCatList)
+                                {
+                                    <option value="@list.ID">
+                                        @list.CategoryName
+                                    </option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="EditSelectedExam()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="listEditCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content" style="background-color:mistyrose">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Selected Category</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="EditSelectedCatForm">
+                    <input type="hidden" id="ExamEditID" name="ID" />
+                    <div class="form-group">
+                        <label for="text">Category</label>
+                        <input type="text" class="form-control" name="CategoryName" id="CategoryNameEdit" placeholder="Category">
+                        <small class="form-text text-muted">You can Edit or Delete it on Question Category List.</small>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="EditSelectedCategory()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="EditSelectedQuestionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content" style="background-color:mistyrose">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Selected Question</h5>
+                <button type="button" id="closeButton" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="EditSelectedQueForm">
+                    <input type="hidden" id="queEditID" name="queID" />
+                    <div class="form-group">
+                        <label for="inputState">Question Category</label>
+                        <select name="CategoryID" id="queCategoryIDEdit" class="form-control">
+                            <option selected>Choose...</option>
+                            @foreach (var list in ViewBag.QuestionCatList)
+                            {
+                                <option value="@list.ID">
+                                    @list.CategoryName
+                                </option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputAddress">Question</label>
+                        <input type="text" class="form-control" name="QuestionText" id="queQuestionTextEdit" placeholder="Question">
+                    </div>
+                    <div class="form-group">
+                        <label for="optionType">Question Type</label>
+                        <input type="hidden" name="QuestionType" id="QuestionTypeInput"/>
+                        <select id="queQuestionTypeEdit" class="form-control" readonly disabled>
+                            <option value="1">With Option</option>
+                            <option value="0">Without Option</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="answerInput" hidden>
+                        <label for="inputAddress">Answer</label>
+                        <input type="text" class="form-control" name="Answer" id="queAnswerEdit" placeholder="Answer">
+                    </div>
+
+                    <fieldset class="form-group" id="optionListEdit" hidden>
+                        <div class="row">
+                            <legend class="col-form-label col-sm-2 pt-0">Options</legend>
+                            <div class="col-sm-10" id="radioList">
+                            </div>
+                        </div>
+                    </fieldset>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="EditSelectedQuestionFun()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section scripts{
+    <script>
+
+        function openModelAddExam() {
+            $("#addExam").modal("show");
+        }
+        function openModelAddCategoryForExam() {
+            $("#addCategoryforExam").modal("show");
+        }
+        function openModelListExam() {
+            $("#listExam").modal("show");
+        }
+        function openModelListCategoryForExam() {
+            $("#listCategoryforExam").modal("show");
+            GetCategoryListForExams(0);
+        }
+        function openModelAddQuestion() {
+            $("#addQuestion").modal("show");
+        }
+        function openModelListQuestion() {
+            $("#listQuestion").modal("show");
+            GetQueList();
+        }
+        function openModelAddCategoryForQue() {
+            $("#addCategoryforQuestion").modal("show");
+
+        }
+        function openModelListCategoryForQue() {
+            $("#listCategoryforQuestion").modal("show");
+            GetCategoryListForQuestions(1);
+        }
+        function openModelAddQustionToExam() {
+            $("#addQuestionToExam").modal("show");
+        }
+        function openModelListUser() {
+            $("#listUser").modal("show");
+            GetUserList();
+        }
+        function openModelAssignUser() {
+            $("#assingUser").modal("show");
+        }
+        function openModelListScore() {
+            $("#listScore").modal("show");
+        }
+
+        $(function () {
+
+            $("#optionType").on('change', function (e) {
+                let p = document.getElementById('optionInput');
+                let q = document.getElementById('answerInput');
+                let o = document.getElementById('optionList');
+                if (this.value==1) {
+                    p.removeAttribute("hidden");
+                    q.setAttribute("hidden", true);
+                }
+                else if (this.value == 2) {
+                    p.setAttribute("hidden", true);
+                    q.removeAttribute("hidden");
+                    o.setAttribute("hidden", true);
+                }
+                else {
+                    q.setAttribute("hidden", true);
+                    p.setAttribute("hidden", true);
+                    o.setAttribute("hidden", true);
+                }
+            });
+        });
+        $(function () {
+            $("#addOptionToRadio").on('click', function (e) {
+                let o = document.getElementById('optionList');
+                let optionValue = $('#optionText').val();
+                if (optionValue != null && optionValue!='') {
+                    o.removeAttribute("hidden");
+
+                    var x = `
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="selectedValue" id="gridRadios1" value="${optionValue}" checked>
+                            <label class="form-check-label" for="gridRadios1">
+                                ${optionValue}
+                                    </label>
+                                </div>
+
+                      <input type="hidden" name="listOfOptions" value="${optionValue}" />`
+
+                    $("#radioList").append(x);
+                }
+                $('#optionText').val("");
+            });
+        });
+        $(function () {
+
+            $("#selectedExam").on('change', function (e) {
+                if (this.value > 0) {
+                    let t = document.getElementById('QuestionListForExam');
+                    t.removeAttribute("hidden");
+                    GetQuestionList();
+                }
+            });
+        });
+        $(function () {
+
+            $("#ExamCategoryID").on('change', function (e) {
+                if (this.value > 0) {
+                    let t = document.getElementById('ListForExams');
+                    t.removeAttribute("hidden");
+                    GetExamListFun();
+                }
+            });
+        });
+        $(function () {
+
+            $("#examIDForScores").on('change', function (e) {
+                if (this.value > 0) {
+                    let t = document.getElementById('ListForScores');
+                    t.removeAttribute("hidden");
+                    GetScoresListFun();
+                }
+            });
+        });
+        function GetScoresListFun() {
+            var exID_ = $("#examIDForScores").val();
+            try {
+                $('#ScoresListTable').DataTable(
+                    {
+                        serverSide: true,
+                        responsive:true,
+                        destroy: true,
+                        processing: true,
+                        "searching": false,
+                        "order": [[0, "desc"]],
+                        "dom": 'Blfrtip',
+                        "lengthMenu": [10, 25, 50, 75, 100],
+                        "deferRender": true,
+                        paging: true,
+                        ajax: {
+                            "url": '/Admin/Home/GetAllScores/',
+                            "dataType": "json",
+                            "data": function (r) {
+                                return {
+                                    dataTablesRequestParameter: r,
+                                    exID: exID_
+                                };
+                            },
+                            "type": 'Post'
+                        },
+                        columns: [
+                            {
+                                data: "userMail",
+                                render: function (data, type, full, meta) {
+                                    return `<p class="font-weight-normal">${full.userMail}</p>`;
+                                }
+
+                            },
+                            {
+                                data: "examName",
+                                render: function (data, type, full, meta) {
+                                    return `<p class="font-weight-normal">${full.examName}</p>`;
+                                }
+
+                            },
+                            {
+                                data: "examDate",
+                                render: function (data, type, full, meta) {
+                                    return full.examDate == null ? "" : `<p class="font-weight-bold text-muted">${moment(full.examDate).format("DD.MM.YYYY<br />HH:mm")}</p>`;
+                                }
+
+                            },
+                            {
+                                data: "userScore",
+                                render: function (data, type, full, meta) {
+                                    return `<p class="font-weight-normal">${full.userScore}</p>`;
+                                }
+
+                            }
+                        ]
+
+                    });
+
+            } catch (e) {
+                alert(e);
+            }
+        }
+        function GetQueList() {
+            try {
+                $('#QuestionListTable').DataTable(
+                    {
+                        serverSide: true,
+                        destroy: true,
+                        processing: true,
+                        "searching": false,
+                        "order": [[0, "desc"]],
+                        "dom": 'Blfrtip',
+                        "lengthMenu": [10, 25, 50, 75, 100],
+                        "deferRender": true,
+                        paging: true,
+                        ajax: {
+                            "url": '/Admin/Home/GetAllQuestions/',
+                            "dataType": "json",
+                            "data": function (r) {
+                                return {
+                                    dataTablesRequestParameter: r,
+
+                                };
+                            },
+                            "type": 'Post'
+                        },
+                        columns: [
+                            {
+                                data: "id",
+                                render: function (data, type, full, meta) {
+                                    return `<p class="font-weight-normal">${full.id}</p>`;
+                                }
+
+                            },
+                            {
+                                data: "questionText",
+                                render: function (data, type, full, meta) {
+                                    return `<p class="font-weight-normal">${full.questionText}</p>`;
+                                }
+
+                            },
+                            {
+                                data: "categoryID",
+                                render: function (data, type, full, meta) {
+                                    return `<p class="font-weight-normal">${full.categoryID}</p>`;
+                                }
+
+                            },
+                            {
+                                data: "questionType",
+                                render: function (data, type, full, meta) {
+                                    var text = full.questionType == 1 ? "Options" : "No Options";
+                                    return `<p class="font-weight-normal" value="${full.questionType}">${text}</p>`;
+                                }
+
+                            },
+                            {
+                                data: "id",
+                                render: function (data, type, full, meta) {
+                                    return `<button type="button" title="Edit" onclick="javascript:EditSelectedQuestion(${full.id})" class="btn btn-info"><i class='fas fa-edit'></i></button>`;
+                                }
+                            },
+                            {
+                                data: "id",
+                                render: function (data, type, full, meta) {
+                                    return `<button type="button" title="Remove" onclick="javascript:RemoveSelectedQuestion(${full.id})" class="btn btn-danger"><i class='fas fa-minus'></i></button>`;
+                                }
+                            }
+                        ]
+
+                    });
+
+            } catch (e) {
+                alert(e);
+            }
+        }
+        function EditSelectedQuestion(id) {
+            $.ajax({
+                url: "/Admin/Home/GetSelectedQueInfo",
+                type: "Post",
+                data: {
+                    queID: id,
+                },
+                success: function (resp) {
+                    var data = resp.options;
+                    $("#EditSelectedQuestionModal").modal("show");
+                    $("#queEditID").val(resp.id);
+                    $("#queCategoryIDEdit").val(resp.categoryID);
+                    $("#queQuestionTextEdit").val(resp.questionText);
+                    $("#queQuestionTypeEdit").val(resp.questionType);
+                    $("#QuestionTypeInput").val(resp.questionType);
+                    $("#optionListEdit").empty();
+                    if (data != null) {
+                        $('#optionListEdit').removeAttr('hidden');
+
+                        for (var i = 0; i < data.length; i++) {
+                            console.log(data[i].optionText);
+                            if (data[i].isTrue) {
+                                var y = `
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="selectedValue" id="gridRadios11" value="${data[i].optionText}" checked>
+                            <label class="form-check-label" for="gridRadios11">
+                                ${data[i].optionText}
+                                    </label>
+                                </div>
+
+                           <input type="hidden" name="listOfOptions" value="${data[i].optionText}" />`
+                            }
+                            else {
+                                var y = `
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="selectedValue" id="gridRadios11" value="${data[i].optionText}">
+                            <label class="form-check-label" for="gridRadios11">
+                                ${data[i].optionText}
+                                    </label>
+                                </div>
+
+                           <input type="hidden" name="listOfOptions" value="${data[i].optionText}" />`
+                            }
+
+
+                            $("#optionListEdit").append(y);
+                        }
+
+                    }
+                }
+            });
+        }
+        function EditSelectedQuestionFun() {
+            var x = $("#queQuestionTypeEdit").val();
+            var dataFrom = new FormData();
+            var requestDAta = $('#EditSelectedQueForm').serialize();
+            console.log(requestDAta);
+            console.log(dataFrom);
+            $.ajax({
+                url: `/Admin/Home/EditQuestion?${requestDAta}`,
+                type: 'POST',
+                data: dataFrom,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (resp) {
+                    if (!resp.hasError) {
+                        $('#closeButton').click();
+                        GetQueList();
+                        alert(resp.message);
+                    } else {
+                        alert(resp.message);
+                    }
+                }
+            });
+        }
+        function RemoveSelectedQuestion(id) {
+            $.ajax({
+                url: "/Admin/Home/RemoveSelectedQue",
+                type: "Post",
+                data: {
+                    queID: id,
+                },
+                success: function (resp) {
+                    if (!resp.hasError) {
+                        GetQueList();
+                        alert(resp.message);
+                    } else {
+                        alert(resp.message);
+                    }
+                }
+            });
+        }
+        function GetUserList() {
+            try {
+                $('#UserListTable').DataTable(
+                    {
+                        serverSide: true,
+                        destroy: true,
+                        processing: true,
+                        "searching": false,
+                        "order": [[0, "desc"]],
+                        "dom": 'Blfrtip',
+                        "lengthMenu": [10, 25, 50, 75, 100],
+                        "deferRender": true,
+                        paging: true,
+                        ajax: {
+                            "url": '/Admin/Home/GetAllUsers/',
+                            "dataType": "json",
+                            "data": function (r) {
+                                return {
+                                    dataTablesRequestParameter: r,
+
+                                };
+                            },
+                            "type": 'Post'
+                        },
+                        columns: [
+                            {
+                                data: "id",
+                                render: function (data, type, full, meta) {
+                                    return `<p class="font-weight-normal">${full.id}</p>`;
+                                }
+
+                            },
+                            {
+                                data: "userName",
+                                render: function (data, type, full, meta) {
+                                    return `<p class="font-weight-normal">${full.userName}</p>`;
+                                }
+
+                            },
+                            {
+                                data: "mail",
+                                render: function (data, type, full, meta) {
+                                    return `<p class="font-weight-normal">${full.mail}</p>`;
+                                }
+
+                            },
+
+                        ]
+
+                    });
+
+            } catch (e) {
+                alert(e);
+            }
+        }
+        function EditSelectedCategoryModal(ID, catName) {
+            $("#listEditCategoryModal").modal("show");
+            $("#CategoryNameEdit").val(catName);
+            $("#ExamEditID").val(ID);
+        }
+        function GetCategoryListForQuestions(type) {
+            try {
+                $('#QuestionCategoryListTable').DataTable(
+                    {
+                        serverSide: true,
+                        destroy: true,
+                        processing: true,
+                        "searching": false,
+                        "order": [[0, "desc"]],
+                        "dom": 'Blfrtip',
+                        "lengthMenu": [10, 25, 50, 75, 100],
+                        "deferRender": true,
+                        paging: true,
+                        ajax: {
+                            "url": '/Admin/Home/GetAllExamsCategory/',
+                            "dataType": "json",
+                            "data": function (r) {
+                                return {
+                                    dataTablesRequestParameter: r,
+                                    type: type
+
+                                };
+                            },
+                            "type": 'Post'
+                        },
+                        columns: [
+                            {
+                                data: "id",
+                                render: function (data, type, full, meta) {
+                                    return `<p class="font-weight-normal">${full.id}</p>`;
+                                }
+
+                            },
+                            {
+                                data: "categoryName",
+                                render: function (data, type, full, meta) {
+                                    return `<p class="font-weight-normal">${full.categoryName}</p>`;
+                                }
+
+                            },
+                            {
+                                data: "categoryType",
+                                render: function (data, type, full, meta) {
+                                    var text = full.categoryType == 0 ? "Exam" : "Ques.";
+                                    return `<p class="font-weight-normal" value="${full.categoryType}">${text}</p>`;
+                                }
+
+                            },
+                            {
+                                render: function (data, type, full, meta) {
+                                    let ID = full.id;
+                                    let catName = full.categoryName;
+                                    return `<button type="button" title="Edit" onclick="javascript:EditSelectedCategoryModal(${ID},'${catName}')" class="btn btn-info"><i class='fas fa-edit'></i></button>`;
+                                }
+                            },
+                            {
+                                render: function (data, type, full, meta) {
+                                    let ID = full.id;
+                                    let catName = full.categoryName;
+                                    return `<button type="button" title="Remove" onclick="javascript:RemoveSelectedCategoryFromList(${ID})" class="btn btn-danger"><i class='fas fa-minus'></i></button>`;
+                                }
+                            }
+                        ]
+
+                    });
+
+            } catch (e) {
+                alert(e);
+            }
+        }
+        function RemoveSelectedCategoryFromList(id) {
+            $.ajax({
+                url: "/Admin/Home/RemoveSelectedCategory",
+                type: "Post",
+                data: {
+                    catID: id,
+                },
+                success: function (resp) {
+                    if (!resp.hasError) {
+                        GetCategoryListForExams();
+                        GetCategoryListForQuestions();
+                        alert(resp.message);
+                    } else {
+                        alert(resp.message);
+                    }
+                }
+            });
+        }
+        function GetCategoryListForExams(type) {
+            try {
+                $('#ExamCategoryListTable').DataTable(
+                    {
+                        serverSide: true,
+                        destroy: true,
+                        processing: true,
+                        "searching": false,
+                        "order": [[0, "desc"]],
+                        "dom": 'Blfrtip',
+                        "lengthMenu": [10, 25, 50, 75, 100],
+                        "deferRender": true,
+                        paging: true,
+                        ajax: {
+                            "url": '/Admin/Home/GetAllExamsCategory/',
+                            "dataType": "json",
+                            "data": function (r) {
+                                return {
+                                    dataTablesRequestParameter: r,
+                                    type: type
+
+                                };
+                            },
+                            "type": 'Post'
+                        },
+                        columns: [
+                            {
+                                data: "id",
+                                render: function (data, type, full, meta) {
+                                    return `<p class="font-weight-normal">${full.id}</p>`;
+                                }
+
+                            },
+                            {
+                                data: "categoryName",
+                                render: function (data, type, full, meta) {
+                                    return `<p class="font-weight-normal">${full.categoryName}</p>`;
+                                }
+
+                            },
+                            {
+                                data: "categoryType",
+                                render: function (data, type, full, meta) {
+                                    var text = full.categoryType == 0 ? "Exam" : "Ques.";
+                                        return `<p class="font-weight-normal" value="${full.categoryType}">${text}</p>`;
+                                }
+
+                            },
+                            {
+                                render: function (data, type, full, meta) {
+                                    let ID = full.id;
+                                    let catName = full.categoryName;
+                                    return `<button type="button" title="Edit" onclick="javascript:EditSelectedCategoryModal(${ID},'${catName}')" data-state="${catName}" data-id="${ID}" class="btn btn-info"><i class='fas fa-edit'></i></button>`;
+                                }
+                            },
+                            {
+                                render: function (data, type, full, meta) {
+                                    let ID = full.id;
+                                    let catName = full.categoryName;
+                                    return ` <button type="button" title="Remove" onclick="javascript:RemoveSelectedCategoryFromList(${ID})" class="btn btn-danger"><i class='fas fa-minus'></i></button>`;
+                                }
+                            }
+                        ]
+
+                    });
+
+            } catch (e) {
+                alert(e);
+            }
+        }
+        function AddUserToExam() {
+            var dataFrom = new FormData();
+            var requestDAta = $('#assignUserForm').serialize();
+            $.ajax({
+                url: `/Admin/Home/AssignUserToExam?${requestDAta}`,
+                type: 'POST',
+                data: dataFrom,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (resp) {
+                    if (!resp.hasError) {
+                        $('#userName').val('');
+                        alert(resp.message);
+                    } else {
+                        alert(resp.message);
+                    }
+                }
+            });
+        }
+        function AddSelectedQuestionToExam(id) {
+            var examID = $("#selectedExam").val();
+            $.ajax({
+                url: "/Admin/Home/AddSelectedQuestionToExam",
+                type: "Post",
+                data: {
+                    questionID: id,
+                    examID: examID
+                },
+                 success: function (resp) {
+                     if (!resp.hasError) {
+                         GetQuestionList();
+                        alert(resp.message);
+                    } else {
+                        alert(resp.message);
+                    }
+                }
+            });
+        }
+        function RemoveSelectedQuestionFromExam(id) {
+            var examID = $("#selectedExam").val();
+            $.ajax({
+                url: "/Admin/Home/RemoveSelectedQuestionFromExam",
+                type: "Post",
+                data: {
+                    questionID: id,
+                    examID: examID
+                },
+                  success: function (resp) {
+                      if (!resp.hasError) {
+                          GetQuestionList();
+                        alert(resp.message);
+                    } else {
+                        alert(resp.message);
+                    }
+                }
+            });
+        }
+        function GetExamListFun() {
+            var catID_ = $("#ExamCategoryID").val();
+            try {
+                $('#ExamListTable').DataTable(
+                    {
+                        serverSide: true,
+                        destroy: true,
+                        processing: true,
+                        "searching": false,
+                        "order": [[0, "desc"]],
+                        "dom": 'Blfrtip',
+                        "lengthMenu": [10, 25, 50, 75, 100],
+                        "deferRender": true,
+                        paging: true,
+                        ajax: {
+                            "url": '/Admin/Home/GetAllExams/',
+                            "dataType": "json",
+                            "data": function (r) {
+                                return {
+                                    dataTablesRequestParameter: r,
+                                    catID: catID_
+                                };
+                            },
+                            "type": 'Post'
+                        },
+                        columns: [
+                            {
+                                data: "id",
+                                render: function (data, type, full, meta) {
+                                    return `<p class="font-weight-normal">${full.id}</p>`;
+                                }
+
+                            },
+                            {
+                                data: "examName",
+                                render: function (data, type, full, meta) {
+                                    return `<p class="font-weight-normal">${full.examName}</p>`;
+                                }
+
+                            },
+                            {
+                                data: "examText",
+                                render: function (data, type, full, meta) {
+                                    return `<p class="font-weight-normal">${full.examText}</p>`;
+                                }
+
+                            },
+                            {
+                                data: "categoryID",
+                                render: function (data, type, full, meta) {
+                                    return `<p class="font-weight-normal">${full.categoryID}</p>`;
+                                }
+
+                            },
+                            {
+                                data: "successScore",
+                                render: function (data, type, full, meta) {
+                                    return `<p class="font-weight-normal">${full.successScore}</p>`;
+                                }
+
+                            },
+                            {
+                                data: "examDuration",
+                                render: function (data, type, full, meta) {
+                                    return `<p class="font-weight-normal">${full.examDuration}</p>`;
+                                }
+
+                            },
+                             {
+                                data: "id",
+                                render: function (data, type, full, meta) {
+                                    return `<button type="button" title="Edit" onclick="javascript:EditSelectedExamModal(${full.id})" class="btn btn-info"><i class='fas fa-edit'></i></button>`;
+                                }
+                            },
+                            {
+                                data: "id",
+                                render: function (data, type, full, meta) {
+                                    return `<button type="button" title="Remove" onclick="javascript:RemoveSelectedExamFromList(${full.id})" class="btn btn-danger"><i class='fas fa-minus'></i></button>`;
+                                }
+                            }
+                        ]
+
+                    });
+
+            } catch (e) {
+                alert(e);
+            }
+        }
+        function GetQuestionList() {
+            var examID = $("#selectedExam").val();
+            try {
+                $('#QuestionTable').DataTable(
+                    {
+                        serverSide: true,
+                        destroy: true,
+                        processing: true,
+                        "searching": false,
+                        "order": [[0, "desc"]],
+                        "dom": 'Blfrtip',
+                        "lengthMenu": [10, 25, 50, 75, 100],
+                        "deferRender": true,
+                        paging: true,
+                        ajax: {
+                            "url": '/Admin/Home/GetAllQuestions/',
+                            "dataType": "json",
+                            "data": function (r) {
+                                return {
+                                    dataTablesRequestParameter: r,
+                                    examID: examID
+                                };
+                            },
+                            "type": 'Post'
+                        },
+                        columns: [
+                            {
+                                data:"id",
+                                 render: function (data, type, full, meta) {
+                                     return `<p class="font-weight-normal">${full.id}</p>`;
+                                }
+
+                            },
+                            {
+                                data: "categoryID",
+                                render: function (data, type, full, meta) {
+                                    return `<p class="font-weight-normal">${full.categoryID}</p>`;
+                                }
+
+                            },
+                            {
+                                data: "questionText",
+                                render: function (data, type, full, meta) {
+                                    return `<p class="font-weight-normal">${full.questionText}</p>`;
+                                }
+
+                            },
+                            {
+                                data: "questionType",
+                                render: function (data, type, full, meta) {
+                                    return `<p class="font-weight-normal">${full.questionType}</p>`;
+                                }
+
+                            },
+                            {
+                                data: "examQuestions",
+                                render: function (data, type, full, meta) {
+                                    var count = full.examQuestions.length;
+                                    return count == 0 ? `<button type="button" title="Add To Exam" onclick="javascript:AddSelectedQuestionToExam(${full.id})" class="btn btn-success"><i class='fas fa-plus'></i></button>`:
+                                        `<button type="button" title="Remove From Exam" onclick="javascript:RemoveSelectedQuestionFromExam(${full.id})" class="btn btn-danger"><i class='fas fa-minus'></i></button>`;
+                                }
+                            }
+
+
+                        ]
+                    });
+            } catch (e) {
+                alert(e);
+            }
+        }
+        function RemoveSelectedExamFromList(id) {
+            $.ajax({
+                url: "/Admin/Home/RemoveSelectedExam",
+                type: "Post",
+                data: {
+                    examID: id,
+                },
+                success: function (resp) {
+                    if (!resp.hasError) {
+                        GetExamListFun();
+                        alert(resp.message);
+                    } else {
+                        alert(resp.message);
+                    }
+                }
+            });
+        }
+        function EditSelectedExamModal(id) {
+            $("#listEditModal").modal("show");
+            $.ajax({
+                url: "/Admin/Home/GetSelectedEditExamInfo",
+                type: "POST",
+                dataType: "Json",
+                data: 'examID=' + id,
+                success: function (resp) {
+                    $("#ExamNameEdit").val(resp.examName);
+                    $("#ExamDurationEdit").val(resp.examDuration);
+                    $("#ExamTextEdt").val(resp.examText);
+                    $("#SuccessScoreEdit").val(resp.successScore);
+                    $("#CategoryIDEdit").val(resp.categoryID);
+                    $("#EditedExamID").val(resp.id);
+                }
+            });
+        }
+        function AddCategoryForExam() {
+            var dataFrom = new FormData();
+            var requestDAta = $('#AddCategoryForExamForm').serialize();
+            $.ajax({
+                url: `/Admin/Home/AddCategory?${requestDAta}`,
+                type: 'POST',
+                data: dataFrom,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (resp) {
+                    if (!resp.hasError) {
+                        alert(resp.message);
+                        window.location.href = '@Url.Action("Index", "Home")';
+                    } else {
+                        alert(resp.message);
+                    }
+                }
+            });
+        }
+        function AddCategoryForQuestion() {
+            var dataFrom = new FormData();
+            var requestDAta = $('#AddCategoryForQuestionForm').serialize();
+            $.ajax({
+                url: `/Admin/Home/AddCategory?${requestDAta}`,
+                type: 'POST',
+                data: dataFrom,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (resp) {
+                    if (!resp.hasError) {
+                        alert(resp.message);
+                        window.location.href = '@Url.Action("Index", "Home")';
+                    } else {
+                        alert(resp.message);
+                    }
+                }
+            });
+        }
+        function AddExam() {
+            var dataFrom = new FormData();
+            var requestDAta = $('#AddExamForm').serialize();
+            $.ajax({
+                url: `/Admin/Home/AddExam?${requestDAta}`,
+                type: 'POST',
+                data: dataFrom,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (resp) {
+                    if (!resp.hasError) {
+                        alert(resp.message);
+                        window.location.href = '@Url.Action("Index", "Home")';
+                    } else {
+                        alert(resp.message);
+                    }
+                }
+            });
+        }
+        function AddQuestion() {
+            var dataFrom = new FormData();
+            var requestDAta = $('#AddQuestionForm').serialize();
+            $.ajax({
+                url: `/Admin/Home/AddQuestion?${requestDAta}`,
+                type: 'POST',
+                data: dataFrom,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (resp) {
+                    if (!resp.hasError) {
+                        alert(resp.message);
+                        window.location.href = '@Url.Action("Index", "Home")';
+                    } else {
+                        alert(resp.message);
+                    }
+                }
+            });
+        }
+        function EditSelectedExam() {
+            var dataFrom = new FormData();
+            var requestDAta = $('#EditSelectedExamForm').serialize();
+            $.ajax({
+                url: `/Admin/Home/EditExam?${requestDAta}`,
+                type: 'POST',
+                data: dataFrom,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (resp) {
+                    if (!resp.hasError) {
+                        GetExamListFun();
+                        alert(resp.message);
+                    } else {
+                        alert(resp.message);
+                    }
+                }
+            });
+        }
+        function EditSelectedCategory() {
+            var dataFrom = new FormData();
+             var requestDAta = $('#EditSelectedCatForm').serialize();
+            $.ajax({
+                url: `/Admin/Home/EditSelectedCategory?${requestDAta}`,
+                type: 'POST',
+                data: dataFrom,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (resp) {
+                    if (!resp.hasError) {
+                        GetCategoryListForQuestions(1);
+                        GetCategoryListForExams(0);
+                        alert(resp.message);
+                    } else {
+                        alert(resp.message);
+                    }
+                }
+            });
+        }
+
+    </script>
+}

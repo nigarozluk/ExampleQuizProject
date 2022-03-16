@@ -1,0 +1,112 @@
+﻿@model Project.Database.Entity.UserExam
+    <style>
+        .count {
+            text-align: center;
+            font-size: 60px;
+            margin-top: 0px;
+        }
+
+    </style>
+@{ 
+  <div class="jumbotron jumbotron-fluid"  style="background-color:white">
+      <div class="container text-center">
+          <h1 class="display-4">@Model.Exam.ExamName</h1>
+          <p class="lead">Do not forget to register for the exam before the deadline...(@Model.Exam.ExamQuestions.Count Questions /@Model.Exam.ExamDuration min.)</p>
+          <input type="hidden" id="examDuration" value="@Model.Exam.ExamDuration" />
+          <p class="count" id="demo"></p>
+      </div>
+</div>
+    var count = 1;
+<form asp-controller="Home" asp-action="SaveExam" method="post" enctype="multipart/form-data">
+
+    <input type="hidden" name="examID" value="@Model.Exam.ID" />
+
+    @foreach (var item in Model.Exam.ExamQuestions)
+    {
+<div class="jumbotron jumbotron-fluid" style="background-color:#f4bbb45e">
+    <div class="container">
+        <p class="lead">@count. @item.Question.QuestionText</p>
+        @foreach (var option in item.Question.Options)
+        {
+    <fieldset class="form-group">
+        <div class="row">
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question_@item.Question.ID" value="@option.ID">
+                    <label class="form-check-label" for="gridRadios1">
+                        @option.OptionText
+                    </label>
+                </div>
+
+            </div>
+        </div>
+    </fieldset>}
+    </div>
+</div>count++;
+            }
+    <div class="jumbotron jumbotron-fluid" style="background-color:white">
+        <div class="container text-center">
+            <button type="submit" id="SubmitExam" class="btn btn-success btn-lg">Save The Exam</button>
+        </div>
+    </div>
+</form>
+  
+
+}
+@section scripts{
+    <script>
+        var duration = $('#examDuration').val();
+        window.setTimeout(function () {
+            $('#SubmitExam').click();
+        }, duration*60000);
+
+
+         //sticky navbar
+         window.onscroll = function () { myFunction() };
+
+         var navbar = document.getElementById("navbar");
+         var sticky = navbar.offsetTop;
+
+         function myFunction() {
+             if (window.pageYOffset >= sticky) {
+                 navbar.classList.add("sticky")
+             } else {
+                 navbar.classList.remove("sticky");
+             }
+         }
+
+
+         
+         // Set the date we're counting down to
+         var countDownDate = new Date(+new Date() + 60000 * duration).getTime();
+
+         // Update the count down every 1 second
+         var x = setInterval(function () {
+
+             // Get today's date and time
+             var now = new Date().getTime();
+
+             // Find the distance between now and the count down date
+             var distance = countDownDate - now;
+
+             // Time calculations for days, hours, minutes and seconds
+             var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+             var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+             // Output the result in an element with id="demo"
+             document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+                 + minutes + "m " + seconds + "s ";
+
+             document.getElementById("LayoutTimer").innerHTML = days + "d " + hours + "h "
+                 + minutes + "m " + seconds + "s ";
+
+             // If the count down is over, write some text
+             if (distance < 0) {
+                 clearInterval(x);
+                 document.getElementById("demo").innerHTML = "EXPIRED";
+             }
+         }, 1000);
+    </script>
+}

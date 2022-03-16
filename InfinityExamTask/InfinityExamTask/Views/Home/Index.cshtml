@@ -1,0 +1,50 @@
+﻿
+<style>
+    .wrapper {
+        text-align: center;
+    }
+
+    .button {
+        position: absolute;
+        top: 50%;
+    }
+</style>
+@{
+    var text = ViewBag.ThereIsExam;
+    var score = ViewBag.Score;
+}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        @{
+            if (text == 1)
+            {
+                <form asp-controller="Home" asp-action="Exam" method="get" enctype="multipart/form-data">
+                    <h1 class="display-4 text-center">You Have Exam!</h1>
+                    <p class="lead text-center">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                    <div class="wrapper">
+                        <button type="submit" oncl class="btn btn-primary btn-lg">Start</button>
+                    </div>
+                </form>
+            }
+            else
+            {
+                <h1 class="display-4 text-center">You Have Not Exam!</h1>
+                <p class="lead text-center">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                <div class="wrapper">
+                    <button type="button" class="btn btn-primary btn-lg" disabled> Start</button>
+                </div>
+            }
+        }
+
+
+    </div>
+</div>
+@if (score != "" && score != null)
+{
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container text-center">
+            <h1 class="display-4">@score</h1>
+            <p class="lead">Your Score</p>
+        </div>
+    </div>
+}
